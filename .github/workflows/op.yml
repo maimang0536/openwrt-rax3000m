@@ -9,7 +9,7 @@ on:
         description: 'sfe加速'     
         required: false
         default: 'false'
-        type: boolean            
+        type: true            
       OP_IP:
         description: '静态IP地址'     
         required: false
@@ -19,13 +19,13 @@ on:
       OP_author:
         description: '定制作者'     
         required: false
-        default: 'shiyu1314' 
+        default: 'FIRE' 
         type: string    
 
       CUSTOM_PLUGINS:
         description: '自定义插件名称，用空格分隔'
         required: false
-        default: 'luci-theme-material3 luci-app-ttyd luci-app-diskman luci-app-momo luci-app-turboacc'
+        default: 'luci-theme-material3 luci-app-ttyd luci-app-diskman luci-app-samba4 luci-app-mosdns luci-app-openvpn-server luci-proto-wireguard luci-app-ddns luci-app-upnp luci-app-turboacc'
         type: string
 
 env:
@@ -37,15 +37,11 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        device: ["rax3000m-emmc", "rax3000m-nand", "rax3000m-256m-nand"]
+        device: ["rax3000m-nand"]
         source: ["openwrt"]
         include:
-          - device: "rax3000m-emmc"
-            config: "CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc=y"
           - device: "rax3000m-nand"
             config: "CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_rax3000m-nand=y"
-          - device: "rax3000m-256m-nand"
-            config: "CONFIG_TARGET_mediatek_filogic_DEVICE_cmcc_rax3000m-256m-nand=y"
 
 
     steps: 
@@ -222,6 +218,7 @@ jobs:
         CONFIG_PACKAGE_kmod-sched-cake=y
         CONFIG_PACKAGE_kmod-sched-core=y
         CONFIG_PACKAGE_kmod-sched=y
+        CONFIG_PACKAGE_kmod-wireguard=y
         ### Utilities
         CONFIG_PACKAGE_fdisk=y
         CONFIG_PACKAGE_cfdisk=y
@@ -242,6 +239,11 @@ jobs:
         CONFIG_PACKAGE_vim=y
         CONFIG_PACKAGE_wget-ssl=y
         CONFIG_PACKAGE_wpad-openssl=y
+        CONFIG_PACKAGE_wireguard-tools=y
+        CONFIG_PACKAGE_samba4-server=y
+        CONFIG_PACKAGE_openvpn-easy-rsa=y
+        CONFIG_PACKAGE_openvpn-openssl=y
+        CONFIG_PACKAGE_miniupnpd-nftables=y
         ### OpenSSL
         CONFIG_OPENSSL_ENGINE=y
         CONFIG_OPENSSL_OPTIMIZE_SPEED=y
