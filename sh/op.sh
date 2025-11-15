@@ -135,6 +135,7 @@ git clone https://github.com/sbwml/package_utils_util-linux -b openwrt-24.10 pac
 
 patch -p1 < 100-openwrt-firewall4-add-custom-nft-command-support.patch
 patch -p1 < wireless.patch
+patch -p1 < target-modify_for_aarch64_x86_64.patch
 
 
 # openssl
