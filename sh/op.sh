@@ -24,6 +24,12 @@ cp -rf linux-firmware package/firmware
 rm -rf package/network/config/wifi-scripts
 cp -rf wifi-scripts package/network/config
 
+rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+git clone https://git.cooluc.com/sbwml/packages_utils_docker feeds/packages/utils/docker
+git clone https://git.cooluc.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://git.cooluc.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://git.cooluc.com/sbwml/packages_utils_runc feeds/packages/utils/runc
+
 sed -i 's/ImmortalWrt/OpenWrt/g' package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 sed -i 's/CN/AU/g' package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 
@@ -136,6 +142,11 @@ git clone https://github.com/sbwml/package_utils_util-linux -b openwrt-24.10 pac
 patch -p1 < 100-openwrt-firewall4-add-custom-nft-command-support.patch
 patch -p1 < wireless.patch
 patch -p1 < target-modify_for_aarch64_x86_64.patch
+
+
+pushd feeds/packages
+    patch -p1 < 0001-fix-cgroupfs-mount.patch
+popd
 
 
 # openssl

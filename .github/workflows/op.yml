@@ -166,6 +166,12 @@ jobs:
           [ -e patch ] && cp -rf patch/automount $SOURCE_NAME/package
           [ -e patch ] && cp -rf patch/autocore-arm $SOURCE_NAME/package
         fi
+        [ -e patch ] && cp -rf patch/cgroupfs-mount/0001-fix-cgroupfs-mount.patch $SOURCE_NAME/feeds/packages
+        mkdir -p $SOURCE_NAME/feeds/packages/utils/cgroupfs-mount/patches
+        [ -e patch ] && cp -rf patch/cgroupfs-mount/900-mount-cgroup-v2-hierarchy-to-sys-fs-cgroup-cgroup2.patch $SOURCE_NAME/feeds/packages/utils/cgroupfs-mount/patches
+        [ -e patch ] && cp -rf patch/cgroupfs-mount/901-fix-cgroupfs-umount.patch $SOURCE_NAME/feeds/packages/utils/cgroupfs-mount/patches
+        [ -e patch ] && cp -rf patch/cgroupfs-mount/902-mount-sys-fs-cgroup-systemd-for-docker-systemd-suppo.patch $SOURCE_NAME/feeds/packages/utils/cgroupfs-mount/patches
+        
         
     - name: 加载自定义脚本
       run: |
