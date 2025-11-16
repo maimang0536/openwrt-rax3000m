@@ -24,12 +24,6 @@ cp -rf linux-firmware package/firmware
 rm -rf package/network/config/wifi-scripts
 cp -rf wifi-scripts package/network/config
 
-rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone https://git.cooluc.com/sbwml/packages_utils_docker feeds/packages/utils/docker
-git clone https://git.cooluc.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone https://git.cooluc.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-git clone https://git.cooluc.com/sbwml/packages_utils_runc feeds/packages/utils/runc
-
 sed -i 's/ImmortalWrt/OpenWrt/g' package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 sed -i 's/CN/AU/g' package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 

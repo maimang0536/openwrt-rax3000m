@@ -143,12 +143,7 @@ jobs:
           [ -e patch ] && cp -rf patch/automount $SOURCE_NAME/package
           [ -e patch ] && cp -rf patch/autocore-arm $SOURCE_NAME/package
         fi
-        [ -e patch ] && cp -rf patch/cgroupfs-mount/0001-fix-cgroupfs-mount.patch $SOURCE_NAME/feeds/packages
-        mkdir -p $SOURCE_NAME/feeds/packages/utils/cgroupfs-mount/patches
-        [ -e patch ] && cp -rf patch/cgroupfs-mount/900-mount-cgroup-v2-hierarchy-to-sys-fs-cgroup-cgroup2.patch $SOURCE_NAME/feeds/packages/utils/cgroupfs-mount/patches
-        [ -e patch ] && cp -rf patch/cgroupfs-mount/901-fix-cgroupfs-umount.patch $SOURCE_NAME/feeds/packages/utils/cgroupfs-mount/patches
-        [ -e patch ] && cp -rf patch/cgroupfs-mount/902-mount-sys-fs-cgroup-systemd-for-docker-systemd-suppo.patch $SOURCE_NAME/feeds/packages/utils/cgroupfs-mount/patches
-        
+              
     - name: 加载自定义脚本
       run: |
         chmod +x $DIY_P1_SH
@@ -253,6 +248,17 @@ jobs:
         CONFIG_BUSYBOX_CONFIG_FEATURE_PREFER_IPV4_ADDRESS=y
         CONFIG_BUSYBOX_CONFIG_FEATURE_SH_HISTFILESIZE=y
         CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
+        ### Firewall
+        CONFIG_PACKAGE_ip6tables-nft=y
+        CONFIG_PACKAGE_ip6tables-mod-nat=y
+        CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
+        CONFIG_PACKAGE_iptables-mod-iprange=y
+        CONFIG_PACKAGE_iptables-mod-nat-extra=y
+        CONFIG_PACKAGE_iptables-mod-socket=y
+        CONFIG_PACKAGE_iptables-mod-tproxy=y
+        CONFIG_PACKAGE_iptables-nft=y
+        CONFIG_PACKAGE_xtables-nft=y
+        # CONFIG_PACKAGE_iptables-legacy is not set
         ### GNU Core Utilities
         CONFIG_PACKAGE_coreutils=y
         CONFIG_PACKAGE_coreutils-cat=y
