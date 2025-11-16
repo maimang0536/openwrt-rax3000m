@@ -80,9 +80,6 @@ pushd feeds/luci
     patch -p1 < 0004-luci-add-firewall-add-custom-nft-rule-support.patch
 popd
 
-
-
-
 sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci/Makefile
 sed -i 's/+uhttpd-mod-ubus //' feeds/luci/collections/luci/Makefile
 sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci-light/Makefile
@@ -91,8 +88,6 @@ sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl/Makefile
 sed -i 's/+uhttpd +uhttpd-mod-ubus /+luci-nginx /g' feeds/packages/net/wg-installer/Makefile
 sed -i '/uhttpd-mod-ubus/d' feeds/luci/collections/luci-light/Makefile
 sed -i 's/+luci-nginx \\$/+luci-nginx/' feeds/luci/collections/luci-light/Makefile
-
-
 
 # nginx - latest version
 rm -rf feeds/packages/net/nginx
@@ -136,11 +131,6 @@ git clone https://github.com/sbwml/package_utils_util-linux -b openwrt-24.10 pac
 patch -p1 < 100-openwrt-firewall4-add-custom-nft-command-support.patch
 patch -p1 < wireless.patch
 patch -p1 < target-modify_for_aarch64_x86_64.patch
-
-
-pushd feeds/packages
-    patch -p1 < 0001-fix-cgroupfs-mount.patch
-popd
 
 
 # openssl
