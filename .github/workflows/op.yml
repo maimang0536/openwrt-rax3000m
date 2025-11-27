@@ -20,7 +20,7 @@ on:
       CUSTOM_PLUGINS:
         description: '自定义插件名称，用空格分隔'
         required: false
-        default: 'luci-theme-aurora luci-theme-material3 luci-app-ttyd luci-app-diskman luci-app-samba4 luci-app-mosdns luci-app-openvpn-server luci-proto-wireguard luci-app-ddns luci-app-upnp luci-app-turboacc'
+        default: 'luci-theme-aurora luci-theme-material3 luci-app-ttyd luci-app-diskman luci-app-samba4 luci-app-mosdns luci-app-openvpn-server luci-proto-wireguard luci-app-ddns luci-app-upnp luci-app-passwall luci-app-turboacc'
         type: string
 
 env:
